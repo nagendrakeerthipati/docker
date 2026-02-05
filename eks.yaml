@@ -17,7 +17,6 @@ kind: ClusterConfig
 metadata:
   name: roboshop-practice
   region: us-east-1
-  version: "1.28"
 
 vpc:
   clusterEndpoints:
