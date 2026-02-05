@@ -1,12 +1,40 @@
+# apiVersion: eksctl.io/v1alpha5
+# kind: ClusterConfig
+
+# metadata:
+#   name: roboshop
+#   region: us-east-1
+
+# managedNodeGroups:
+#   - name: roboshop
+#     instanceTypes: ["m5.large", "c3.large","c4.large","c5.large"]
+#     desiredCapacity: 3
+#     spot: true
+
 apiVersion: eksctl.io/v1alpha5
 kind: ClusterConfig
 
 metadata:
-  name: roboshop
+  name: roboshop-practice
   region: us-east-1
+  version: "1.28"
+
+vpc:
+  clusterEndpoints:
+    publicAccess: true
+    privateAccess: false
 
 managedNodeGroups:
-  - name: roboshop
-    instanceTypes: ["m5.large", "c3.large","c4.large","c5.large"]
-    desiredCapacity: 3
-    spot: true
+  - name: roboshop-ng
+    instanceTypes:
+      - t3.small
+      - t3.medium
+    desiredCapacity: 2
+    minSize: 1
+    maxSize: 2
+    spot: false
+    privateNetworking: false
+    labels:
+      role: worker
+    tags:
+      purpose: practice
